@@ -1,0 +1,1804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelly Xu - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1B3B6F;
+            --secondary-color: #2E5A9A;
+            --accent-color: #4A7BC8;
+            --text-color: #1A2B4D;
+            --light-bg: #F0F4F8;
+            --white: #ffffff;
+            --shadow: 0 8px 25px rgba(27,59,111,0.15);
+            --gradient: linear-gradient(135deg, #0D1B3C 0%, #1B3B6F 35%, #2E5A9A 70%, #4A7BC8 100%);
+            --light-blue: #E8F2FF;
+            --medium-blue: #C1D7F0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+            background: var(--light-bg);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .desktop-text { display: inline; }
+        .mobile-text { display: none; }
+
+        header {
+            background: var(--primary-color);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-content h1 {
+            font-size: 2.4rem;
+            margin-bottom: 18px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header-content p {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            opacity: 0.95;
+            font-weight: 500;
+        }
+
+        .header-subtitle {
+            font-size: 0.95rem;
+            margin-top: 12px;
+            opacity: 0.8;
+            font-weight: 300;
+            line-height: 1.5;
+            white-space: nowrap;
+        }
+
+        nav {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: center;
+            padding: 15px 0;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: var(--secondary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        section {
+            padding: 50px 0;
+            background: var(--light-bg);
+        }
+
+        #projects {
+            padding-top: 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.0rem;
+            margin-bottom: 40px;
+            color: var(--primary-color);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(180deg, rgba(27,59,111,0.05) 0%, transparent 100%);
+        }
+
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-text {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            text-align: justify;
+            margin-bottom: 40px;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .about-text p {
+            margin-bottom: 30px;
+        }
+
+        .about-text .highlight {
+            background: var(--light-blue);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .career-timeline {
+            margin: 40px 0 0 0;
+            position: relative;
+            background: white;
+            border-radius: 20px;
+            padding: 35px 30px 30px 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .timeline-subtitle {
+            text-align: center;
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .horizontal-timeline {
+            position: relative;
+            padding: 40px 0 25px 0;
+        }
+
+        .timeline-line {
+            position: absolute;
+            top: calc(50% - 5px);
+            left: 2%;
+            right: 2%;
+            height: 4px;
+            background: linear-gradient(90deg, rgba(46,90,154,0.3) 0%, rgba(74,123,200,0.4) 50%, rgba(46,90,154,0.3) 100%);
+            border-radius: 2px;
+            z-index: 2;
+        }
+
+        .timeline-line::after {
+            content: '';
+            position: absolute;
+            right: -12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-left: 12px solid rgba(46,90,154,0.3);
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+        }
+
+        .horizontal-timeline::after {
+            content: '🚂';
+            position: absolute;
+            left: 2%;
+            top: calc(50% - 27px);
+            font-size: 18px;
+            z-index: 10;
+            animation: trainRide 6s linear infinite;
+        }
+
+        @keyframes trainRide {
+            0% { transform: translateX(0px); opacity: 1; }
+            85% { transform: translateX(880px); opacity: 1; }
+            90% { transform: translateX(880px); opacity: 0; }
+            95% { transform: translateX(0px); opacity: 0; }
+            100% { transform: translateX(0px); opacity: 1; }
+        }
+
+        .timeline-items {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            position: relative;
+            z-index: 4;
+            padding: 0 2%;
+        }
+
+        .timeline-point {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            flex: 1;
+            max-width: 250px;
+        }
+
+        .timeline-dot-horizontal {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(27,59,111,0.3), inset 0 2px 4px rgba(255,255,255,0.2);
+            position: relative;
+            z-index: 5;
+            margin-bottom: 15px;
+            border: 3px solid white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            transform: translateY(-4px);
+        }
+
+        .timeline-dot-horizontal:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(27,59,111,0.4);
+        }
+
+        .timeline-info {
+            text-align: center;
+            margin-top: 10px;
+            background: var(--light-bg);
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(27,59,111,0.08);
+            border: 1px solid rgba(193,215,240,0.5);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-info:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(27,59,111,0.12);
+            background: white;
+        }
+
+        .timeline-date {
+            color: var(--secondary-color);
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+        }
+
+        .timeline-role {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            line-height: 1.2;
+        }
+
+        .timeline-note {
+            font-size: 0.7rem;
+            opacity: 0.7;
+            color: var(--text-color);
+            font-weight: 400;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            min-height: 420px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .project-header {
+            background: var(--gradient);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .project-card h3 {
+            font-size: 1.3rem;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .project-content {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-description {
+            margin-bottom: 15px;
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            text-align: justify;
+        }
+
+        .project-responsibilities {
+            margin-bottom: 12px;
+            padding: 12px 15px 12px 12px;
+            background: var(--light-blue);
+            border-radius: 10px;
+            font-size: 0.85rem;
+            border-left: 4px solid var(--secondary-color);
+            height: 110px;
+            overflow-y: auto;
+        }
+
+        .responsibilities-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+
+        .tech-tag {
+            background: var(--light-blue);
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            color: var(--primary-color);
+            border: 1px solid var(--medium-blue);
+            white-space: nowrap;
+        }
+
+        .demo-section {
+            margin-bottom: 12px;
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #e9ecef;
+            height: 250px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .demo-section h5 {
+            margin: 0 0 8px 0;
+            color: var(--primary-color);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .demo-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .demo-gif {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .demo-gif:hover {
+            transform: scale(1.02);
+        }
+
+        .demo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            height: 180px;
+        }
+
+        .demo-grid-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .demo-grid img {
+            width: 100%;
+            height: 155px;
+            object-fit: cover;
+            border-radius: 6px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .demo-grid img:hover {
+            transform: scale(1.05);
+        }
+
+        .demo-grid-label {
+            font-size: 0.65rem;
+            color: #666;
+            margin-top: 5px;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .demo-caption {
+            font-size: 0.7rem;
+            color: #666;
+            margin: 3px 0 0 0;
+            text-align: center;
+            line-height: 1.2;
+            padding: 0 10px;
+        }
+
+        .project-links {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin-top: auto;
+        }
+
+        .link-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 8px 14px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            flex: 1;
+            min-width: 120px;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--secondary-color);
+            border: 2px solid var(--secondary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .btn-technical {
+            background: #27ae60;
+            color: white;
+        }
+
+        .btn-technical:hover {
+            background: #219a52;
+            transform: translateY(-2px);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .modal-header {
+            background: var(--gradient);
+            color: white;
+            padding: 25px 30px;
+            border-radius: 20px 20px 0 0;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .close:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .modal-body {
+            padding: 30px;
+            line-height: 1.4;
+            font-size: 0.9rem;
+        }
+
+        .modal-body h4 {
+            color: var(--primary-color);
+            font-size: 1rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+            border-left: 4px solid var(--secondary-color);
+            padding-left: 12px;
+        }
+
+        .modal-body ul {
+            padding-left: 20px;
+            margin-bottom: 12px;
+        }
+
+        .functional-flow {
+            margin: 10px 0;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .flow-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .flow-row {
+            display: flex;
+            align-items: stretch;
+            gap: 10px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .flow-module {
+            background: white;
+            border: 2px solid var(--secondary-color);
+            border-radius: 10px;
+            padding: 10px;
+            flex: 1;
+            width: 280px;
+            max-width: 280px;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+
+        .flow-module:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+            border-color: var(--primary-color);
+        }
+
+        .module-header {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 8px;
+            white-space: nowrap;
+        }
+
+        .module-icon {
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .flow-module h5 {
+            color: var(--primary-color);
+            font-size: 0.85rem;
+            margin: 0;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .module-details {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+            flex: 1;
+        }
+
+        .module-details li {
+            font-size: 0.7rem;
+            color: #666;
+            margin-bottom: 3px;
+            padding-left: 12px;
+            position: relative;
+            line-height: 1.3;
+        }
+
+        .module-details li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+        }
+
+        .flow-arrow {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            font-weight: bold;
+            flex-shrink: 0;
+            align-self: center;
+        }
+
+        .flow-connector {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            width: 100%;
+            position: relative;
+            height: 20px;
+            padding-right: 15%;
+        }
+
+        .vertical-arrow {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .architecture-layer {
+            width: 100%;
+            margin-bottom: 5px;
+        }
+
+        .layer-title {
+            text-align: center;
+            color: var(--primary-color);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            padding: 3px 0;
+            background: rgba(46,90,154,0.05);
+            border-radius: 8px;
+        }
+
+        .arch-module {
+            background: white !important;
+        }
+
+        .architecture-connector {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            height: 10px;
+            align-items: center;
+        }
+
+        .integration-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            padding: 8px;
+            background: white;
+            border-radius: 10px;
+            border: 2px solid var(--secondary-color);
+        }
+        
+        .integration-item {
+            font-size: 0.75rem;
+            padding: 4px 8px;
+        }
+
+        .modal-body li {
+            margin-bottom: 6px;
+            line-height: 1.3;
+            color: #555;
+        }
+
+        @media (max-width: 768px) {
+            .flow-row {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .flow-arrow {
+                display: none;
+            }
+            
+            .flow-module {
+                max-width: 100%;
+                width: 100%;
+                min-height: auto;
+            }
+            
+            .flow-connector {
+                display: none;
+            }
+            
+            .vertical-arrow {
+                display: none;
+            }
+            
+            .integration-item {
+                font-size: 0.7rem;
+                padding: 4px 8px;
+            }
+        }
+
+        footer {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            padding: 12px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            width: 45px;
+            height: 45px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border: none;
+        }
+
+        .contact-item:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-2px);
+        }
+
+        .copy-tooltip {
+            position: relative;
+        }
+
+        .copy-tooltip::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .copy-tooltip.show-tooltip::after {
+            opacity: 1;
+        }
+
+        @media (max-width: 1200px) {
+            @keyframes trainRide {
+                0% { transform: translateX(0px); opacity: 1; }
+                85% { transform: translateX(750px); opacity: 1; }
+                90% { transform: translateX(750px); opacity: 0; }
+                95% { transform: translateX(0px); opacity: 0; }
+                100% { transform: translateX(0px); opacity: 1; }
+            }
+        }
+
+        @media (max-width: 992px) {
+            @keyframes trainRide {
+                0% { transform: translateX(0px); opacity: 1; }
+                85% { transform: translateX(580px); opacity: 1; }
+                90% { transform: translateX(580px); opacity: 0; }
+                95% { transform: translateX(0px); opacity: 0; }
+                100% { transform: translateX(0px); opacity: 1; }
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                min-height: 40vh;
+                padding: 40px 0;
+            }
+
+            .desktop-text { display: none; }
+            .mobile-text { display: inline; }
+
+            .header-content h1 {
+                font-size: 2.0rem;
+            }
+
+            .header-subtitle {
+                font-size: 0.85rem !important;
+                line-height: 1.4;
+                white-space: normal;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            .about-text {
+                text-align: left;
+                padding: 20px;
+                font-size: 0.85rem;
+                line-height: 1.7;
+            }
+
+            .timeline-line {
+                display: none;
+            }
+
+            .horizontal-timeline::after {
+                display: none;
+            }
+
+            .timeline-items {
+                flex-direction: column;
+                gap: 40px;
+                padding: 0 5%;
+                align-items: center;
+            }
+
+            .timeline-point {
+                max-width: 100%;
+                width: 100%;
+                flex-direction: row;
+                text-align: left;
+                align-items: center;
+            }
+
+            .timeline-info {
+                margin-top: 0;
+                margin-left: 20px;
+                text-align: left;
+                flex: 1;
+            }
+
+            .timeline-dot-horizontal {
+                width: 35px;
+                height: 35px;
+                margin-bottom: 0;
+                font-size: 16px;
+                transform: translateY(0px);
+                margin-right: 0;
+            }
+
+            .timeline-role {
+                font-size: 0.85rem;
+                white-space: nowrap;
+            }
+
+            .timeline-note {
+                font-size: 0.65rem;
+            }
+
+            .timeline-date {
+                font-size: 0.8rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card {
+                min-height: 350px;
+            }
+
+            .modal-content {
+                margin: 10% auto;
+                width: 95%;
+            }
+            
+            .modal-body {
+                padding: 20px;
+                font-size: 0.85rem;
+            }
+
+            .modal-header h3 {
+                font-size: 1.1rem !important;
+                line-height: 1.2 !important;
+                padding-right: 40px;
+            }
+
+            .demo-section {
+                margin-bottom: 10px !important;
+                padding: 10px !important;
+                height: 210px !important;
+            }
+
+            .demo-section h5 {
+                font-size: 0.8rem !important;
+                margin-bottom: 6px !important;
+            }
+
+            .demo-gif {
+                height: 140px !important;
+            }
+
+            .demo-grid {
+                height: 140px !important;
+                gap: 6px !important;
+                margin-top: 12px !important;
+            }
+
+            .demo-grid img {
+                height: 85px !important;
+            }
+
+            .demo-grid-label {
+                font-size: 0.6rem !important;
+                margin-top: 14px !important;
+                line-height: 1.2 !important;
+                max-height: 2.4em;
+                overflow: hidden;
+            }
+
+            .demo-caption {
+                font-size: 0.7rem !important;
+                margin: 3px 0 0 0 !important;
+                line-height: 1.2 !important;
+            }
+
+            .project-card .btn {
+                font-size: 0.8rem !important;
+                padding: 12px 16px !important;
+                width: 100% !important;
+                min-width: auto !important;
+            }
+
+            .project-card .link-row {
+                flex-direction: column !important;
+                gap: 8px !important;
+            }
+
+            .project-responsibilities {
+                height: 125px !important;
+                font-size: 0.75rem !important;
+                line-height: 1.3 !important;
+                padding: 10px 15px 10px 10px !important;
+            }
+
+            .tech-stack {
+                flex-wrap: nowrap !important;
+                overflow-x: auto !important;
+                scrollbar-width: none;
+            }
+
+            .tech-stack::-webkit-scrollbar {
+                display: none !important;
+            }
+
+            .tech-tag {
+                font-size: 0.65rem !important;
+                padding: 3px 8px !important;
+                flex-shrink: 0 !important;
+                margin-right: 6px;
+            }
+
+            .project-card:nth-child(1) h3 {
+                font-size: 0.8rem !important;
+            }
+            
+            .project-card h3 {
+                font-size: 0.85rem !important;
+                white-space: nowrap !important;
+                line-height: 1.2 !important;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                padding: 0 10px;
+            }
+
+            .project-description {
+                font-size: 0.8rem !important;
+                line-height: 1.35 !important;
+                margin-bottom: 12px !important;
+            }
+
+            .project-header {
+                padding: 15px 5px !important;
+            }
+
+            .project-content {
+                padding: 20px 15px !important;
+            }
+
+            footer .container > div:first-child {
+                flex-direction: row !important;
+                gap: 15px !important;
+                justify-content: center;
+                align-items: center;
+            }
+
+            footer p[style*="font-size: 0.75rem"] {
+                padding: 0 8px;
+                line-height: 1.2;
+                font-size: 0.65rem !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1>Kelly Xu</h1>
+                <p>Legal Tech Explorer</p>
+                <p class="header-subtitle">
+                    <span class="desktop-text">Solving Legal Workflow Complexity • Building Accessible Justice Solutions</span>
+                    <span class="mobile-text">Solving Legal Workflow Complexity<br>Building Accessible Justice Solutions</span>
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <div class="nav-content">
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>With a background in law and a growing passion for technology, I have navigated a career path that bridges <span class="highlight">legal expertise</span>, <span class="highlight">product thinking</span>, and <span class="highlight">data-driven analysis</span>. After earning my Master's degrees in Law, I began my career as a <strong>⚖️ Case Secretary</strong>, where I observed how the confidentiality and procedural complexity of online arbitration can make it difficult for parties—especially those unfamiliar with the process—to fully understand their rights and obligations. Knowing there was room for digitization, I decided to apply technology toward improving dispute resolution workflows.</p>
+                    
+                    <p>Motivated by that goal, I transitioned into the legal tech industry as a <strong>💻 Legal Product Engineer</strong>. I mapped arbitration workflows into prototypes and drafted detailed requirements. By applying <span class="highlight">regex-based extraction systems</span>, <span class="highlight">conditional logic</span>, and <span class="highlight">dependency parsing</span> to analyze judicial documents and collaborating with designers and developers to enhance <span class="highlight">search and analytics tools</span>, I witnessed how technology greatly improved the predictability of dispute outcomes for all parties—this significantly boosted my sense of accomplishment.</p>
+                    
+                    <p>To further develop my technical skills, I joined an <strong>📊 academic research project</strong> on spatial–temporal analysis of COVID-19 spread across U.S. counties. I integrated and cleaned case, mobility, and demographic data, then developed <span class="highlight">regularized regression models</span> to examine how county characteristics influence mobility–transmission dynamics. During that period, relocating abroad with my husband brought considerable challenges, prompting me to reconsider what constitutes universally applicable professional skills and to clarify my learning objectives.</p>
+                    
+                    <p>These interdisciplinary experiences and adapting to a new life have motivated me to pursue computer science training. As a mother, I want to achieve meaningful results and set a positive example. I plan to leverage <span class="highlight">machine learning</span> and <span class="highlight">large language models</span> for legal text understanding and Q&A, while using <span class="highlight">microservices</span> and <span class="highlight">cloud platforms</span> for scalable deployment. <strong>My long-term goal is to build an AI-powered legal assistant that compares arbitration rules, estimates costs, and explains procedures—making dispute resolution more transparent and accessible.</strong></p>
+                </div>
+
+                <div class="career-timeline">
+                    <h3 class="timeline-subtitle">🛤️ My Journey</h3>
+                    <div class="horizontal-timeline">
+                        <div class="timeline-line"></div>
+                        <div class="timeline-items">
+                            <div class="timeline-point">
+                                <div class="timeline-dot-horizontal">⚖️</div>
+                                <div class="timeline-info">
+                                    <div class="timeline-date">06/2017 - 10/2019</div>
+                                    <div class="timeline-role">Case Secretary</div>
+                                </div>
+                            </div>
+
+                            <div class="timeline-point">
+                                <div class="timeline-dot-horizontal">💻</div>
+                                <div class="timeline-info">
+                                    <div class="timeline-date">10/2019 - 11/2022</div>
+                                    <div class="timeline-role">Legal Product Engineer</div>
+                                </div>
+                            </div>
+
+                            <div class="timeline-point">
+                                <div class="timeline-dot-horizontal">🎯</div>
+                                <div class="timeline-info">
+                                    <div class="timeline-date">08/2023 - 09/2023</div>
+                                    <div class="timeline-role">Product Manager</div>
+                                </div>
+                            </div>
+
+                            <div class="timeline-point">
+                                <div class="timeline-dot-horizontal">📊</div>
+                                <div class="timeline-info">
+                                    <div class="timeline-date">02/2024 - 08/2024</div>
+                                    <div class="timeline-role">Research Assistant <span class="timeline-note">(Unpaid)</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>🦠 COVID-19 Mobility-Transmission Analysis</h3>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-description">
+                            Spatial-temporal analysis of COVID-19 spread using static county characteristics and dynamic mobility data to understand transmission patterns across U.S. counties.
+                        </p>
+                        <div class="project-responsibilities">
+                            <div class="responsibilities-title">My Contributions:</div>
+                            • Multi-source data integration<br>
+                            • Optimal lag structure analysis between mobility and case correlations<br>
+                            • Regularized regression modeling with hyperparameter tuning
+                        </div>
+                        <div class="tech-stack">
+                            <span class="tech-tag">📊 Statistical Analysis</span>
+                            <span class="tech-tag">🔍 Ridge/Lasso/Elastic Net</span>
+                            <span class="tech-tag">✅ Cross-validation</span>
+                        </div>
+                        
+                        <div class="demo-section">
+                            <h5>📊 Key Research Finding</h5>
+                            <div class="demo-content">
+                                <img src="https://github.com/user-attachments/assets/2a163ce9-64b1-4413-876f-832eaff51da4" 
+                                     alt="The Privilege of Staying Home - COVID-19 Mobility Analysis" 
+                                     class="demo-gif image-clickable">
+                                <p class="demo-caption">Click to view full size</p>
+                            </div>
+                        </div>
+                        
+                        <div class="project-links">
+                            <div class="link-row">
+                                <a href="https://github.com/kellyxu1122/Covid19_US_SpatialTemporal" class="btn btn-primary" target="_blank">
+                                    🔗 GitHub Repository
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>📚 Legal Case Analysis Platform</h3>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-description">
+                            Comprehensive legal document analysis system with regex-based extraction, knowledge graph construction, and intelligent search capabilities processing millions of court decisions.
+                        </p>
+                        <div class="project-responsibilities">
+                            <div class="responsibilities-title">My Contributions:</div>
+                            • Configured comprehensive regex-based extraction system processing large-scale legal documents across multiple case types, developing extensive reusable regex patterns with advanced conditional logic for nested legal structures and multi-format data extraction<br>
+                            • Implemented sophisticated data integration and quality control framework with multi-source mapping, element-level and paragraph-level search sources, three-tier exclusion system, and real-time quality assurance achieving high accuracy through multi-round validation testing<br>
+                            • Built knowledge graph capabilities through dependency parsing-based rules generating party–legal relationship–dispute object triples, integrated with intelligent search and recommendation features for accurate case retrieval and legal precedent matching
+                        </div>
+                        <div class="tech-stack">
+                            <span class="tech-tag">🔧 Regex Engineering</span>
+                            <span class="tech-tag">🕸️ Knowledge Graph</span>
+                            <span class="tech-tag">🔍 Semantic Search</span>
+                        </div>
+                        
+                        <div class="demo-section">
+                            <h5>🎬 System Demo</h5>
+                            <div class="demo-content">
+                                <img src="https://github.com/kellyxu1122/my-website/blob/main/Legal%20Case%20Analysis%20Platform.gif?raw=true" 
+                                     alt="Legal Case Analysis Platform Demo" 
+                                     class="demo-gif image-clickable">
+                                <p class="demo-caption">Click to view full size</p>
+                            </div>
+                        </div>
+                        
+                        <div class="project-links">
+                            <div class="link-row">
+                                <button class="btn btn-technical" onclick="openModal('techModal')">
+                                    🔧 Applied Techniques
+                                </button>
+                                <a href="https://ydzk.chineselaw.com/ydzk/case?showYsjs=true" class="btn btn-primary" target="_blank">
+                                    🔗 Live Platform
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>⚙️ Arbitration Case Management System</h3>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-description">
+                            Designed comprehensive product prototypes and system documentation for arbitration case management, mapping complex legal workflows into intuitive digital processes.
+                        </p>
+                        <div class="project-responsibilities">
+                            <div class="responsibilities-title">My Contributions:</div>
+                            • Axure prototyping and technical requirements documentation<br>
+                            • SQL querying and Python-based dynamic template automation<br>
+                            • Arbitration annulment data analysis with Tableau visualization
+                        </div>
+                        <div class="tech-stack">
+                            <span class="tech-tag">🗄️ SQL</span>
+                            <span class="tech-tag">🐍 Python</span>
+                            <span class="tech-tag">🎨 Axure RP</span>
+                            <span class="tech-tag">📊 Tableau</span>
+                        </div>
+                        
+                        <div class="demo-section">
+                            <h5>🎨 System Prototypes</h5>
+                            <div class="demo-content">
+                                <div class="demo-grid">
+                                    <div class="demo-grid-item">
+                                        <img src="https://github.com/kellyxu1122/my-website/blob/main/worktable.png?raw=true" 
+                                             alt="Work Dashboard Interface" 
+                                             class="image-clickable">
+                                        <div class="demo-grid-label">Work Dashboard</div>
+                                    </div>
+                                    <div class="demo-grid-item">
+                                        <img src="https://github.com/kellyxu1122/my-website/blob/main/Document%20preparation.png?raw=true" 
+                                             alt="Document Processing Interface" 
+                                             class="image-clickable">
+                                        <div class="demo-grid-label">Document Processing</div>
+                                    </div>
+                                </div>
+                                <p class="demo-caption">Click images to view full size</p>
+                            </div>
+                        </div>
+                        
+                        <div class="project-links">
+                            <div class="link-row">
+                                <button class="btn btn-primary" onclick="openModal('prototypeModal')">
+                                    ⚙️ Functional Design
+                                </button>
+                                <button class="btn btn-secondary" onclick="openModal('architectureModal')">
+                                    🏗️ System Architecture
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>⚖️ Litigation Risk Analysis Platform</h3>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-description">
+                            Judicial analytics system analyzing court decision patterns, claim adoption rates, and monetary award distributions across civil litigation cases for outcome prediction.
+                        </p>
+                        <div class="project-responsibilities">
+                            <div class="responsibilities-title">My Contributions:</div>
+                            • Configured complex extraction rules with conditional logic and boolean operations, including monetary amount extraction with automatic maximum value selection and rejection case processing<br>
+                            • Created quantitative adoption/rejection analysis distinguishing court-awarded amounts from original claims across litigation elements<br>
+                            • Implemented 3-tier quality validation pipeline: preprocessing → rule-based extraction → cross-verification
+                        </div>
+                        <div class="tech-stack">
+                            <span class="tech-tag">⚡ Boolean Logic Operations</span>
+                            <span class="tech-tag">📊 Statistical Evaluation</span>
+                            <span class="tech-tag">⚖️ Judicial Outcome Analytics</span>
+                        </div>
+                        
+                        <div class="demo-section">
+                            <h5>🎬 System Demo</h5>
+                            <div class="demo-content">
+                                <img src="https://github.com/kellyxu1122/my-website/blob/main/Litigation%20Risk%20Analysis%20Platform.gif?raw=true" 
+                                     alt="Litigation Risk Analysis Platform Demo" 
+                                     class="demo-gif image-clickable">
+                                <p class="demo-caption">Click to view full size</p>
+                            </div>
+                        </div>
+                        
+                        <div class="project-links">
+                            <div class="link-row">
+                                <button class="btn btn-technical" onclick="openModal('litigationModal')">
+                                    🔧 Applied Techniques
+                                </button>
+                                <a href="https://sspt.bjinternetcourt.gov.cn/ssfz/caseList" class="btn btn-primary" target="_blank">
+                                    🔗 Live Platform
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 20px; margin-bottom: 30px; flex-wrap: wrap;">
+                <h2 style="margin: 0;">Contact</h2>
+                <button class="contact-item copy-tooltip" id="emailButton" title="Click to copy email address" onclick="copyEmail()" data-tooltip="Click to copy email address">
+                    ✉️
+                </button>
+            </div>
+            <p style="margin-bottom: 30px;">Available for discussions and research collaboration. Feel free to reach out.</p>
+            <p style="margin-top: 30px; opacity: 0.7; font-size: 0.75rem; line-height: 1.4;">Notice: All professional work documented was completed in China prior to my current stay in the US.<br>Academic purposes only. © 2025 Kelly Xu. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div id="techModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🔧 Applied Techniques</h3>
+                <span class="close" onclick="closeModal('techModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <ul>
+                    <li><strong>Extraction Pipeline:</strong> Conditional logic ➝ Source mapping ➝ Multi-tier filtering ➝ Structured output</li>
+                    <li><strong>Pattern Matching:</strong> Nested structure handling, ambiguity resolution, sequential and parallel extraction</li>
+                    <li><strong>Data Support:</strong> Parsing of monetary amounts, Chinese/numeric dates, legal entity names</li>
+                    <li><strong>Knowledge Graph:</strong> Dependency parsing ➝ Triple generation ➝ Semantic relationship mapping</li>
+                    <li><strong>Search Intelligence:</strong> Element-level indexing ➝ Semantic matching ➝ Case recommendation</li>
+                    <li><strong>Validation Framework:</strong> Real-time metrics, coverage analysis, automated accuracy checks</li>
+                    <li><strong>Design Rationale:</strong> Rule-based extraction chosen for interpretability and high precision in legally sensitive contexts</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="litigationModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🔧 Applied Techniques</h3>
+                <span class="close" onclick="closeModal('litigationModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <ul>
+                    <li><strong>Conditional Logic:</strong> Path-based referencing with boolean operations and exclusion filtering</li>
+                    <li><strong>Data Integration:</strong> Multi-source mapping with dynamic value concatenation and format standardization</li>
+                    <li><strong>Text Preprocessing:</strong> Automated legal statute removal and custom filtering pipelines</li>
+                    <li><strong>Quality Assurance:</strong> Multi-round validation with statistical evaluation and accuracy optimization</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="prototypeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>⚙️ Functional Design</h3>
+                <span class="close" onclick="closeModal('prototypeModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <h4>🏛️ Arbitration Case Management System Overview</h4>
+                <p style="margin-bottom: 15px; line-height: 1.5; color: #555; font-size: 0.9rem;">
+                    A comprehensive digital platform designed to streamline arbitration proceedings from case initiation through final award enforcement.
+                </p>
+
+                <div class="functional-flow">
+                    <div class="flow-container">
+                        <div class="flow-row">
+                            <div class="flow-module">
+                                <div class="module-header">
+                                    <span class="module-icon">📋</span>
+                                    <h5>Case Initiation</h5>
+                                </div>
+                                <ul class="module-details">
+                                    <li>Online case filing portal</li>
+                                    <li>Document upload system</li>
+                                    <li>Automatic case classification</li>
+                                    <li>Fee calculation engine</li>
+                                </ul>
+                            </div>
+                            <div class="flow-arrow">→</div>
+                            <div class="flow-module">
+                                <div class="module-header">
+                                    <span class="module-icon">⚖️</span>
+                                    <h5>Panel Formation</h5>
+                                </div>
+                                <ul class="module-details">
+                                    <li>Arbitrator selection system</li>
+                                    <li>Conflict of interest checking</li>
+                                    <li>Panel constitution management</li>
+                                    <li>Case assignment workflow</li>
+                                </ul>
+                            </div>
+                            <div class="flow-module">
+                                <div class="module-header">
+                                    <span class="module-icon">🔄</span>
+                                    <h5>Procedural Management</h5>
+                                </div>
+                                <ul class="module-details">
+                                    <li>Timeline & milestone tracking</li>
+                                    <li>Document exchange platform</li>
+                                    <li>Hearing scheduling system</li>
+                                    <li>Multi-channel notifications</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="flow-connector">
+                            <div class="connector-line"></div>
+                            <div class="vertical-arrow">↓</div>
+                        </div>
+                        
+                        <div class="flow-row reverse">
+                            <div class="flow-module">
+                                <div class="module-header">
+                                    <span class="module-icon">🛠️</span>
+                                    <h5>System Admin</h5>
+                                </div>
+                                <ul class="module-details">
+                                    <li>Role-based access control</li>
+                                    <li>Quality assurance tools</li>
+                                    <li>External system integration</li>
+                                    <li>Performance monitoring</li>
+                                </ul>
+                            </div>
+                            <div class="flow-arrow">←</div>
+                            <div class="flow-module">
+                                <div class="module-header">
+                                    <span class="module-icon">✅</span>
+                                    <h5>Case Closure</h5>
+                                </div>
+                                <ul class="module-details">
+                                    <li>Award issuance system</li>
+                                    <li>Compliance tracking</li>
+                                    <li>Archive management</li>
+                                    <li>Statistical reporting</li>
+                                </ul>
+                            </div>
+                            <div class="flow-module">
+                                <div class="module-header">
+                                    <span class="module-icon">📝</span>
+                                    <h5>Decision Making</h5>
+                                </div>
+                                <ul class="module-details">
+                                    <li>Deliberation support tools</li>
+                                    <li>Award drafting templates</li>
+                                    <li>Review & approval workflow</li>
+                                    <li>Digital signature integration</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h4>🏗️ Original Functional Architecture</h4>
+                <img src="https://github.com/kellyxu1122/my-website/blob/main/Functional%20Architecture%20Diagram.png?raw=true" 
+                     alt="Functional Architecture Diagram" 
+                     style="width: 100%; max-width: 700px; margin: 10px 0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); cursor: pointer;"
+                     onclick="window.open(this.src, '_blank')">
+                <p style="font-size: 0.8rem; color: #666; text-align: center; margin-top: 5px;">Original design documentation (Chinese) - Click to view full size</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="architectureModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🏗️ System Architecture</h3>
+                <span class="close" onclick="closeModal('architectureModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <h4>🏛️ System Architecture Overview</h4>
+                <p style="margin-bottom: 10px; line-height: 1.4; color: #555; font-size: 0.85rem;">
+                    Multi-tier architecture supporting diverse user roles and comprehensive case lifecycle management through integrated PC and mobile platforms.
+                </p>
+
+                <div class="functional-flow">
+                    <div class="flow-container">
+                        <div class="architecture-layer">
+                            <h6 class="layer-title">👥 User Access Layer</h6>
+                            <div class="flow-row">
+                                <div class="flow-module arch-module">
+                                    <div class="module-header">
+                                        <span class="module-icon">⚖️</span>
+                                        <h5>Parties Portal</h5>
+                                    </div>
+                                    <ul class="module-details">
+                                        <li>Case filing & tracking</li>
+                                        <li>Document submission</li>
+                                        <li>Status monitoring</li>
+                                        <li>Fee payment gateway</li>
+                                    </ul>
+                                </div>
+                                <div class="flow-module arch-module">
+                                    <div class="module-header">
+                                        <span class="module-icon">👨‍⚖️</span>
+                                        <h5>Arbitrator Panel</h5>
+                                    </div>
+                                    <ul class="module-details">
+                                        <li>Case review dashboard</li>
+                                        <li>Decision documentation</li>
+                                        <li>Panel collaboration</li>
+                                        <li>Hearing management</li>
+                                    </ul>
+                                </div>
+                                <div class="flow-module arch-module">
+                                    <div class="module-header">
+                                        <span class="module-icon">💼</span>
+                                        <h5>Admin System</h5>
+                                    </div>
+                                    <ul class="module-details">
+                                        <li>Case management</li>
+                                        <li>User administration</li>
+                                        <li>System configuration</li>
+                                        <li>Report generation</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="architecture-connector" style="height: 10px;">
+                        </div>
+
+                        <div class="architecture-layer">
+                            <h6 class="layer-title">🔧 Core Platform Services</h6>
+                            <div class="flow-row">
+                                <div class="flow-module arch-module">
+                                    <div class="module-header">
+                                        <span class="module-icon">📄</span>
+                                        <h5>Document Engine</h5>
+                                    </div>
+                                    <ul class="module-details">
+                                        <li>Template generation</li>
+                                        <li>Version control</li>
+                                        <li>Digital signatures</li>
+                                        <li>Format conversion</li>
+                                    </ul>
+                                </div>
+                                <div class="flow-module arch-module">
+                                    <div class="module-header">
+                                        <span class="module-icon">🔔</span>
+                                        <h5>Communication</h5>
+                                    </div>
+                                    <ul class="module-details">
+                                        <li>Email notifications</li>
+                                        <li>SMS integration</li>
+                                        <li>In-app messaging</li>
+                                        <li>Real-time updates</li>
+                                    </ul>
+                                </div>
+                                <div class="flow-module arch-module">
+                                    <div class="module-header">
+                                        <span class="module-icon">🔐</span>
+                                        <h5>Security Layer</h5>
+                                    </div>
+                                    <ul class="module-details">
+                                        <li>Authentication service</li>
+                                        <li>Role-based access</li>
+                                        <li>Data encryption</li>
+                                        <li>Audit logging</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="architecture-connector" style="height: 10px;">
+                        </div>
+
+                        <div class="architecture-layer">
+                            <h6 class="layer-title">🔗 External Integration</h6>
+                            <div class="integration-row">
+                                <span class="integration-item">📧 Email Services</span>
+                                <span class="integration-item">💬 SMS Gateway</span>
+                                <span class="integration-item">✍️ E-Signature</span>
+                                <span class="integration-item">🏢 OA Systems</span>
+                                <span class="integration-item">🗃️ Legal Database</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h4>🏗️ Original System Architecture</h4>
+                <img src="https://github.com/kellyxu1122/my-website/blob/main/System%20Architecture%20Diagram.jpg?raw=true" 
+                     alt="Arbitration System Architecture" 
+                     style="width: 100%; max-width: 700px; margin: 10px 0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); cursor: pointer;"
+                     onclick="window.open(this.src, '_blank')">
+                <p style="font-size: 0.8rem; color: #666; text-align: center; margin-top: 5px;">Original architecture documentation (Chinese) - Click to view full size</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function copyEmail() {
+            const email = 'kailixu1122@gmail.com';
+            const emailButton = document.getElementById('emailButton');
+            
+            navigator.clipboard.writeText(email).then(function() {
+                emailButton.setAttribute('data-tooltip', 'Email copied!');
+                emailButton.classList.add('show-tooltip');
+                
+                setTimeout(function() {
+                    emailButton.classList.remove('show-tooltip');
+                    emailButton.setAttribute('data-tooltip', 'Click to copy email address');
+                }, 2000);
+            }).catch(function(err) {
+                const textarea = document.createElement('textarea');
+                textarea.value = email;
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                
+                emailButton.setAttribute('data-tooltip', 'Email copied!');
+                emailButton.classList.add('show-tooltip');
+                
+                setTimeout(function() {
+                    emailButton.classList.remove('show-tooltip');
+                    emailButton.setAttribute('data-tooltip', 'Click to copy email address');
+                }, 2000);
+            });
+        }
+
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'block';
+                modal.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'none';
+                modal.classList.remove('show');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function closeAllModals() {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                modal.style.display = 'none';
+                modal.classList.remove('show');
+            });
+            document.body.style.overflow = 'auto';
+        }
+
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                closeAllModals();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const clickableImages = document.querySelectorAll('.image-clickable');
+            clickableImages.forEach(img => {
+                img.addEventListener('click', function() {
+                    window.open(this.src, '_blank');
+                });
+            });
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeAllModals();
+            }
+        });
+    </script>
+</body>
+</html>
